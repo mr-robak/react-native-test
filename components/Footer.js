@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import { View, TextInput, Button, Alert } from "react-native";
 
 export default function Footer() {
-  const [text, setText] = useState("TEST");
+  const [input, setInput] = useState("TEST");
   return (
     <View>
       <Button
-        onPress={() => Alert.alert(text)}
+        onPress={() => Alert.alert(input)}
         title="Learn More"
         color="green"
       />
       <TextInput
         style={{
+          marginTop: 4,
           height: 40,
           borderColor: "darkgrey",
-          borderWidth: 3,
+          borderWidth: 1,
+          borderRadius: 8,
         }}
-        onChangeText={(txt) => setText(txt)}
-        value={text}
+        onChangeText={(txt) => setInput(txt)}
+        value={input}
       ></TextInput>
     </View>
   );

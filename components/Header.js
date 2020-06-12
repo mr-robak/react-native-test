@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, TouchableOpacity, ActivityIndicator, View } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  View,
+  Alert,
+} from "react-native";
 
 export default function Header() {
   return (

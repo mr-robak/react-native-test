@@ -10,37 +10,33 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  StyleSheet,
 } from "react-native";
-import Header from "./components/Header";
+
+import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
+import FlexBox from "./components/FlexBox";
+import GameScreen from "./components/GameScreen";
+import ShareExample from "./components/ ShareExample";
+
+const styles = StyleSheet.create({
+  dino: { fontSize: 20, fontWeight: "bold", color: "rebeccapurple" },
+  share: {
+    marginTop: 100,
+  },
+  screen: { marginBottom: 20 },
+});
 
 export default function App() {
-  const randomNum = useRef(Math.random()).current;
-
   return (
-    <View style={{ marginHorizontal: 40, marginVertical: 60 }}>
-      <FlatList
-        ListHeaderComponent={Header}
-        data={[0, 1, 2, 3, 4]}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => Alert.alert(`You pressed image #${item + 1}`)}
-            >
-              <Image
-                source={{
-                  uri: `https://picsum.photos/500/300?random=${
-                    randomNum + item
-                  }`,
-                }}
-                style={{ width: "100%", height: 160, marginBottom: 30 }}
-              />
-            </TouchableOpacity>
-          );
-        }}
-        keyExtractor={(item) => String(item)}
-        ListFooterComponent={Footer}
-      />
+    <View style={styles.screen}>
+      <GameScreen />
+      {/* <View style={{ marginHorizontal: 10, marginVertical: 80 }}> */}
+      {/* <FlexBox /> */}
+      {/* <Gallery /> */}
+      {/* <Text style={styles.dino}>Dinosaurs are cool</Text> */}
+      {/* <Footer /> */}
+      {/* </View> */}
     </View>
   );
 }
