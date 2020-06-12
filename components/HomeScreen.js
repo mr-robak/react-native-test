@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, Button } from "react-native";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ route, navigation }) {
+  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    if (route.params && route.params.count) {
+      setCount(route.params.count);
+    }
+  }, [route.params]);
+
   return (
     <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
       <Text
@@ -13,7 +21,13 @@ export default function HomeScreen({ navigation }) {
       >
         Welcome to my awesome app!
       </Text>
-      <Button title="Go to Game" onPress={() => navigation.navigate("Game")} />
+      <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+        Times I've been here: {count}
+      </Text>
+      <Button
+        title="Go to Game"
+        onPress={() => navigation.navigate("Game", { count: count + 1 })}
+      />
     </View>
   );
 }

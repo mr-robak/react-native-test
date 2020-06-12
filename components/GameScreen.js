@@ -4,9 +4,11 @@ import { DeviceMotion } from "expo-sensors";
 import ShareExample from "./ ShareExample";
 import MyButton from "./MyButton";
 
-export default function GameScreen() {
+export default function GameScreen({ route, navigation }) {
   const [color, set_color] = useState("white");
   const [paused, set_paused] = useState(false);
+
+  const { count } = route.params;
 
   useEffect(() => {
     DeviceMotion.setUpdateInterval(50);
@@ -46,6 +48,10 @@ export default function GameScreen() {
         Choose your color!
       </Text>
       <View style={{ marginBottom: 20 }}>
+        <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+          Times i've been here: {count}
+        </Text>
+
         <MyButton
           title={paused ? "Restart" : "Pause"}
           onPress={() => {
@@ -54,6 +60,10 @@ export default function GameScreen() {
         />
       </View>
       <ShareExample color={color} />
+      <Button
+        title="Go to Home"
+        onPress={() => navigation.navigate("Home", { count: count + 1 })}
+      />
     </View>
   );
 }
